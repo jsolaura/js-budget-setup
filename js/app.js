@@ -48,14 +48,14 @@ class UI {
             console.log('?')
         } else {
             let amount = parseInt(amountValue);
-            this.expenseInput = '';
-            this.amountInput = '';
+            this.expenseInput.value = '';
+            this.amountInput.value = '';
             
             let expense = {
                 id: this.itemID,
                 title: expenseValue,
                 amount: amount,
-            }
+            };
             this.itemID++;
             this.itemList.push(expense);
             this.addExpense(expense);
@@ -83,7 +83,6 @@ class UI {
                 </div>
             </div>`;
         this.expenseList.appendChild(div);
-
     }
 
     // show balance
@@ -121,11 +120,33 @@ class UI {
     }
 
     editExpense(el) {
+        let id = parseInt(el.dataset.id);
+        let parent = el.parentElement.parentElement.parentElement;
+        this.expenseList.removeChild(parent);
 
+        let expense = this.itemList.filter((item) => {
+            return item.id === id;
+        })
+        this.expenseInput.value = expense[0].title;
+        this.amountInput.value = expense[0].amount;
+
+        let tempList = this.itemList.filter((item) => {
+            return item.id !== id;
+        })
+        this.itemList = tempList;
+        this.showBalance();
     }
 
     deleteExpense(el) {
-        
+        let id = parseInt(el.dataset.id);
+        let parent = el.parentElement.parentElement.parentElement;
+        this.expenseList.removeChild(parent);
+
+        let tempList = this.itemList.filter((item) => {
+            return item.id !== id;
+        })
+        this.itemList = tempList;
+        this.showBalance();
     }
 }
 

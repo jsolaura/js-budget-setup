@@ -10,6 +10,11 @@ body {
   background: var(--mainWhite);
   color: var(--mainDark);
 }
+
+.container-fluid {
+  padding: 3rem;
+}
+
 .budget-feedback,
 .expense-feedback {
   display: none;
