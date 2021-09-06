@@ -103,8 +103,6 @@ class UI {
         }
     }
 
-    
-
     // total expense
     totalExpense() {
         let total = 0;
